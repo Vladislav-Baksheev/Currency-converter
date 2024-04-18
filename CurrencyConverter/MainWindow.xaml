@@ -5,8 +5,86 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CurrencyConverter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="700">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock 
+                Text="Конвертер валют"
+                Grid.Row="0"
+                Margin="3"/>
+
+            <StackPanel Grid.Row="1">
+                <TextBlock
+                    Text="Исходная валюта:"/>
+                <DockPanel>
+                    <TextBlock
+                        Margin="3"
+                        Text="USD"/>
+                    <ComboBox
+                        Margin="3">
+                    </ComboBox>
+                </DockPanel>
+
+                <Button 
+                    Width="75"
+                    Height="25"
+                    Margin="3"
+                    HorizontalAlignment="Right"
+                    Content="Поменять">
+                </Button>
+                <TextBlock
+                    Text="Целевая валюта:"/>
+                <DockPanel>
+                    <TextBlock 
+                        Margin="3"
+                        Text="RUB"/>
+                    <ComboBox 
+                        Margin="3">
+                    </ComboBox>
+                </DockPanel>
+                
+            </StackPanel>
+            
+            <StackPanel Grid.Row="2">
+                <TextBlock
+                    Margin="3"
+                    Text="Исходная сумма:"/>
+                <DockPanel>
+                    <TextBlock
+                        Margin="3"
+                        Text="USD"/>
+                    <TextBox
+                        Margin="3">
+                    </TextBox>
+                </DockPanel>
+                
+                <TextBlock 
+                    Margin="3"
+                    Text="Итоговая сумма:"/>
+                <DockPanel>
+                    <TextBlock 
+                        Text="RUB"
+                        Margin="3"/>
+                    <TextBox 
+                        Margin="3"
+                        IsReadOnly="True">
+                    </TextBox>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
