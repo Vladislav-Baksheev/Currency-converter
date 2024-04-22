@@ -33,9 +33,11 @@
                 <DockPanel>
                     <TextBlock
                         Margin="3"
-                        Text="USD"/>
+                        Text="{Binding selectedBaseCurrency}"/>
                     <ComboBox
-                        Margin="3">
+                        Margin="3"
+                        ItemsSource="{Binding Currencies}"
+                        SelectedItem="{Binding selectedBaseCurrency}">
                     </ComboBox>
                 </DockPanel>
 
@@ -51,9 +53,11 @@
                 <DockPanel>
                     <TextBlock 
                         Margin="3"
-                        Text="RUB"/>
+                        Text="{Binding selectedTargetCurrency}"/>
                     <ComboBox 
-                        Margin="3">
+                        Margin="3"
+                        ItemsSource="{Binding Currencies}"
+                        SelectedItem="{Binding selectedTargetCurrency}">
                     </ComboBox>
                 </DockPanel>
                 

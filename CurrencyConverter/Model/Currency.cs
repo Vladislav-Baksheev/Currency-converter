@@ -11,34 +11,16 @@ namespace View.Model
         /// <summary>
         /// Исходное название валюты.
         /// </summary>
-        public string SourceName { get; set; }
-
-        /// <summary>
-        /// Целевое название валюты.
-        /// </summary>
-        public string TargetName { get; set; }
-
-        /// <summary>
-        /// Исходная сумма.
-        /// </summary>
-        public double SourceValue { get; set; }
-
-        /// <summary>
-        /// Итоговая сумма.
-        /// </summary>
-        public double FinalValue { get; set; }
+        public string Name { get; set; }
 
         public Currency() 
         {
             
         }
 
-        public Currency(string sourceName, string targetName, double sourceValue, double finalValue)
+        public Currency(string sourceName)
         {
-            SourceName = sourceName;
-            TargetName = targetName;
-            SourceValue = sourceValue;
-            FinalValue = finalValue;
+            Name = sourceName;
         }
     }
 }

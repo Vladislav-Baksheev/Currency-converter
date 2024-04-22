@@ -12,49 +12,19 @@ namespace View.ViewModel
     {
         Currency Currency = new Currency();
 
-        public string SourceName
+        public string Name
         {
-            get => Currency.SourceName;
-            set => SetProperty(Currency.SourceName, 
+            get => Currency.Name;
+            set => SetProperty(Currency.Name, 
                 value, Currency, 
                 (currency, sourceName) => 
-                Currency.SourceName = sourceName, 
+                Currency.Name = sourceName, 
                 true);
         }
 
-        public string TargetName
-        {
-            get => Currency.TargetName;
-            set => SetProperty(Currency.TargetName,
-                value, Currency,
-                (currency, targetName) =>
-                Currency.TargetName = targetName,
-                true);
-        }
-
-        public double SourceValue
-        {
-            get => Currency.SourceValue;
-            set => SetProperty(Currency.SourceValue,
-                value, Currency,
-                (currency, sourceValue) =>
-                Currency.SourceValue = sourceValue,
-                true);
-        }
-
-        public double FinalValue
-        {
-            get => Currency.FinalValue;
-            set => SetProperty(Currency.FinalValue,
-                value, Currency,
-                (currency, finalValue) =>
-                Currency.FinalValue = finalValue,
-                true);
-        }
-
-        public CurrencyVM(Currency currency) 
+        public CurrencyVM() 
         { 
-            Currency = currency;
+
         }
     }
 }
