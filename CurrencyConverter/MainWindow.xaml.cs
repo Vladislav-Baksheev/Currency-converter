@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using View.ViewModel;
 
 namespace CurrencyConverter
 {
@@ -23,6 +24,8 @@ namespace CurrencyConverter
         public MainWindow()
         {
             InitializeComponent();
+            MainVM mainVM = new MainVM();
+            DataContext = mainVM;
         }
     }
 }
