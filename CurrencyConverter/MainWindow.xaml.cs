@@ -28,6 +28,7 @@ namespace CurrencyConverter
             DataContext = mainVM;
 
         }
-        
+
+
     }
 }

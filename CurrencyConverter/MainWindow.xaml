@@ -46,7 +46,8 @@
                     Height="25"
                     Margin="3"
                     HorizontalAlignment="Right"
-                    Content="Поменять">
+                    Content="Применить"
+                    Command="{Binding ApplyCommand}">
                 </Button>
                 <TextBlock
                     Text="Целевая валюта:"/>
@@ -70,9 +71,11 @@
                 <DockPanel>
                     <TextBlock
                         Margin="3"
-                        Text="USD"/>
+                        Text="{Binding selectedBaseCurrency}"/>
                     <TextBox
-                        Margin="3">
+                        Margin="3"
+                        IsReadOnly="True"
+                        Text="{Binding PriceBaseCurrency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     </TextBox>
                 </DockPanel>
                 
@@ -81,11 +84,12 @@
                     Text="Итоговая сумма:"/>
                 <DockPanel>
                     <TextBlock 
-                        Text="RUB"
+                        Text="{Binding selectedTargetCurrency}"
                         Margin="3"/>
                     <TextBox 
                         Margin="3"
-                        IsReadOnly="True">
+                        IsReadOnly="True"
+                        Text="{Binding PriceTargetCurrency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     </TextBox>
                 </DockPanel>
             </StackPanel>

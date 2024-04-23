@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,19 +13,40 @@ using View.Model;
 
 namespace View.ViewModel
 {
-    public class MainVM : INotifyPropertyChanged
+    public partial class MainVM : ObservableObject, INotifyPropertyChanged
     {
+        [ObservableProperty]
         private string _baseCurrency;
 
+        [ObservableProperty]
         private string _targetCurrency;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public string[] Currencies  { get; set;} = {"RUB", "USD"};
+
+
+        private string _priceBaseCurrency;
+
+        private string _priceTargetCurrency;
+
+        public string PriceBaseCurrency 
+        {
+            get => _priceBaseCurrency;
+            set
+            {
+                _priceBaseCurrency = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public string PriceTargetCurrency 
+        {
+            get => _priceTargetCurrency;
+            set
+            {
+                _priceTargetCurrency = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string selectedBaseCurrency 
         { 
@@ -49,6 +72,7 @@ namespace View.ViewModel
             {
                 if (value != _targetCurrency)
                 {
+                    
                     if (!string.IsNullOrEmpty(_targetCurrency))
                     {
                         _targetCurrency = value;
@@ -60,12 +84,25 @@ namespace View.ViewModel
 
         public MainVM() 
         {
-            _baseCurrency = "RUB";
+            BaseCurrency = "USD";
 
-            _targetCurrency = "USD";
+            TargetCurrency = "RUB";
 
-            //var request = new GetRequest($"https://api.currencyapi.com/v3/latest?apikey=cur_live_mSHf8s7IvElHCuzAKMCm64WvEU4sl2JwwiPBZQ0Y&currencies={_targetCurrency}&base_currency={_baseCurrency}");
-            //request.Run();
+        }
+
+        [RelayCommand]
+        private void Apply()
+        {
+            var dataAPI = new DataAPI();
+            dataAPI.Go(selectedTargetCurrency, selectedBaseCurrency);
+            PriceBaseCurrency = dataAPI.PriceBaseCurrency;
+            PriceTargetCurrency = dataAPI.PriceTargetCurrency;
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
