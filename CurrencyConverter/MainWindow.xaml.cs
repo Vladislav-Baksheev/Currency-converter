@@ -26,9 +26,6 @@ namespace CurrencyConverter
             InitializeComponent();
             MainVM mainVM = new MainVM();
             DataContext = mainVM;
-
         }
-
-
     }
 }

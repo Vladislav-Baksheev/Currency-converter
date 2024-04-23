@@ -13,7 +13,7 @@ using View.Model;
 
 namespace View.ViewModel
 {
-    public partial class MainVM : ObservableObject, INotifyPropertyChanged
+    public partial class MainVM : ObservableObject
     {
         [ObservableProperty]
         private string _baseCurrency;
@@ -21,88 +21,27 @@ namespace View.ViewModel
         [ObservableProperty]
         private string _targetCurrency;
 
-        public string[] Currencies  { get; set;} = {"RUB", "USD"};
+        public string[] Currencies  { get; set;} = {"RUB", "USD", "EUR", "BTC"};
 
-
+        [ObservableProperty]
         private string _priceBaseCurrency;
 
+        [ObservableProperty]
         private string _priceTargetCurrency;
-
-        public string PriceBaseCurrency 
-        {
-            get => _priceBaseCurrency;
-            set
-            {
-                _priceBaseCurrency = value;
-                OnPropertyChanged();
-            }
-        }
-        
-        public string PriceTargetCurrency 
-        {
-            get => _priceTargetCurrency;
-            set
-            {
-                _priceTargetCurrency = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string selectedBaseCurrency 
-        { 
-            get => _baseCurrency; 
-
-            set
-            {
-                if(value != _baseCurrency)
-                {
-                    if (!string.IsNullOrEmpty(_baseCurrency))
-                    {
-                        _baseCurrency = value;
-                        NotifyPropertyChanged();
-                    }
-                }                     
-            }
-        }
-        public string selectedTargetCurrency
-        {
-            get => _targetCurrency;
-
-            set
-            {
-                if (value != _targetCurrency)
-                {
-                    
-                    if (!string.IsNullOrEmpty(_targetCurrency))
-                    {
-                        _targetCurrency = value;
-                        NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
 
         public MainVM() 
         {
             BaseCurrency = "USD";
-
             TargetCurrency = "RUB";
-
         }
 
         [RelayCommand]
         private void Apply()
         {
             var dataAPI = new DataAPI();
-            dataAPI.Go(selectedTargetCurrency, selectedBaseCurrency);
-            PriceBaseCurrency = dataAPI.PriceBaseCurrency;
-            PriceTargetCurrency = dataAPI.PriceTargetCurrency;
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            dataAPI.Go(TargetCurrency, BaseCurrency);
+            PriceBaseCurrency = dataAPI.PriceBaseCurrency.ToString();
+            PriceTargetCurrency = dataAPI.PriceTargetCurrency.ToString();
         }
     }
 }

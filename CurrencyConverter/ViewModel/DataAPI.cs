@@ -33,6 +33,7 @@ namespace View.ViewModel
             var targetCurrency = data[$"{selectedTargetCurrency}"];
 
             PriceTargetCurrency = targetCurrency["value"].ToString();
+
         }
     }
 }
